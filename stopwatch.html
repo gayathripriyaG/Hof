@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      #time{
+            display:flex;
+            align-items: baseline;
+
+        }
+  </style>
+</head>
+<body>
+  <div id = "container">
+    <div id = "time">
+      <h1 id = "hou">00</h1>
+      <h4>h</h4>
+      <h1 id = "min">00</h1>
+      <h4>m</h4>
+      <h1 id = "sec">00</h1>
+      <h4>s</h4>
+   </div>
+
+  <button  id= "start" class = "btn">Start</button>
+  <button  id= "pause" class = "btn">pause</button>
+  <button  id= "stop" class = "btn">Stop</button>  
+  </div>
+  
+</body>
+</html>
+
+<script>
+   var start = document.querySelector("#start");
+    var pause = document.querySelector("#pause");
+    var stop = document.querySelector("#stop");
+
+    var hour = document.getElementById("hou");
+    var minute = document.getElementById("min");
+    var second = document.getElementById("sec");
+    var h=0;
+    var m=0;
+    var s =0;
+
+    start.addEventListener("click",main);
+    
+    function main(){
+      // console.log(h,m,s);
+      var interval = setInterval(function(){
+             timer();
+         },1000)
+
+         function timer(){
+         if(s < 59 ){
+          s++;
+          
+          second.innerHTML = s;
+          // console.log(s.innerHTML);
+
+        }
+        else if (s === 59){
+          m++;
+          s = 0;
+          minute.innerHTML = m;
+          second.innerHTML = s;
+
+
+        }
+        else if(m === 59){
+          h++;
+          m = 0;
+          hour.innerHTML = h;
+          minute.innerHTML = m;
+        }
+ 
+
+         }
+
+         pause.addEventListener("click",pauseTimer)
+         stop.addEventListener("click",stopwatch)
+
+         function pauseTimer(){
+          
+           clearInterval(interval)
+         }
+
+         function stopwatch(){
+          hour.innerHTML = 00;
+           minute.innerHTML = 00;
+           second.innerHTML = 00;
+           clearInterval(interval)
+         }
+
+
+
+
+    }
+</script>

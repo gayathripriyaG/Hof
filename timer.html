@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        #time{
+            display:flex;
+            align-items: baseline;
+
+        }
+        input{
+            width:80px;
+        }
+        
+        
+    </style>
+</head>
+<body >
+    <div id = "container">
+  
+       <input type="number" placeholder="hours" max="99" min="0" id="houinp"/>
+       <input type="number" placeholder="minutes" max="60" min = "0" id="mininp"/>
+       <input type="number" placeholder="seconds" max = "60" min = "0" id="secinp"/>
+          
+       <div id = "time">
+          <h1 id = "hou">00</h1>
+          <h4>h</h4>
+          <h1 id = "min">00</h1>
+          <h4>m</h4>
+          <h1 id = "sec">00</h1>
+          <h4>s</h4>
+       </div>
+    
+      <button  id= "start" class = "btn">Start</button>
+      <button  id= "reset" class = "btn">reset</button>
+      <button  id= "stop" class = "btn">Stop</button>  
+    </div>
+
+</body>
+</html>
+
+<script>
+    var start = document.querySelector("#start");
+    var reset = document.querySelector("#reset");
+    var stop = document.querySelector("#stop");
+
+    start.addEventListener("click",main);
+    
+
+    function main(){
+        var h = document.getElementById("houinp").value;
+        var m = document.getElementById("mininp").value;
+        var s = document.getElementById("secinp").value;
+
+         var hour = document.querySelector('#hou')
+         var minutes = document.querySelector('#min')
+         var seconds = document.querySelector('#sec')
+
+         var interval = setInterval(function(){
+             timer();
+         },1000)
+
+        function timer(){
+            hour.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+    
+   if(h === 0 && m === 0 && s=== 0){
+       h = 0;
+       m = 0;
+       s = 0;
+       hour.innerHTML = h;
+       minutes.innerHTML = m;
+       seconds.innerHTML = s;
+       
+    }
+    else if(s !== 0){
+        s--;
+        seconds.innerHTML = s;
+    }
+    else if(m !== 0 && s === 0){
+        s = 59;
+        m--;
+        minutes.innerHTML = m;
+       seconds.innerHTML = s;
+    }
+    else if(h !== 0 && m === 0){
+        m= 59;
+        h--;
+        hour.innerHTML = h;
+       minutes.innerHTML = m;
+    }
+   return;
+     }
+  reset.addEventListener("click",stopTimer)
+  stop.addEventListener("click",stopTimer)
+
+  function stopTimer(){
+      h = 00;
+      m = 00;
+      s = 00;
+      hour.innerHTML = h;
+      minutes.innerHTML = m;
+      seconds.innerHTML = s;
+      clearInterval(interval);
+  }
+     
+
+  }
+   
+</script>
